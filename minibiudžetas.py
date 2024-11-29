@@ -2,6 +2,7 @@ import datetime
 
 pajamos = []
 islaidos = []
+data1 = []
 
 while True:
     print('1. Ivesti pajamas\n'
@@ -40,6 +41,18 @@ while True:
         islaidos.append(naujos_islaidos)
         suma2 = sum(naujos_islaidos)
         print(suma2)
+
+    if pasirinkimas == "3":
+        if not pajamos:
+            print('Neivestos pajamos!!!')
+        else:
+            for elem in pajamos:
+                print(f'Data: {data1}\n'
+                      f'Avansas: {elem[0]}\n'
+                      f'Atlyginimas: {elem[1]}\n'
+                      f'Stipendija: {elem[2]}\n'
+                      f'Investiciju uzdarbis: {elem[3]}\n'
+                      f'Papildomos pajamos: {elem[4]}')
 
 
 
