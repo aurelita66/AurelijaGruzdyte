@@ -1,3 +1,8 @@
+
+pajamos = []
+islaidos = []
+
+
 while True:
     print('1. Ivesti pajamas\n'
           '2. Ivesti islaidas\n'
@@ -5,3 +10,9 @@ while True:
           '4. Atspausdinti islaidu eilutes\n'
           '5. Atspausdinti statistika\n'
           'q - Iseiti\n')
+
+    pasirinkimas = input('Iveskite pasirinkima: ')
+
+    if pasirinkimas == "q":
+          break
+
