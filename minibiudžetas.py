@@ -1,9 +1,9 @@
 import datetime
 
+from funkcijos import sumuok, vidurkis, didziausias, maziausias, balansas
+
 pajamos = []
 islaidos = []
-data1 = []
-data2 = []
 
 while True:
     print('1. Ivesti pajamas\n'
@@ -16,56 +16,63 @@ while True:
     pasirinkimas = input('Iveskite pasirinkima: ')
 
     if pasirinkimas == "q":
-          break
+        break
 
     if pasirinkimas == "1":
-        data1 = input('Iveskite data formatu(YYYY-MM-DD): ')
-        dt = datetime.datetime.strptime(data1, '%Y-%m-%d')
-        avansas = float(input('Avansas: '))
-        atlyginimas = float(input('Atlyginimas: '))
-        stipendija = float(input('Stipendija: '))
-        investicijos = float(input('Investiciju uzdarbis: '))
-        papildomos = float(input('Papildomos pajamos: '))
-        naujos_pajamos = [avansas, atlyginimas, stipendija, investicijos, papildomos]
-        pajamos.append(naujos_pajamos)
-        suma = sum(naujos_pajamos)
-        print(suma)
+        data = input('Iveskite data (YYYY-MM-DD): ')
+        dt = datetime.datetime.strptime(data, '%Y-%m-%d')
+        pavadinimas = input('Iveskite pajamu pavadinima: ')
+        suma = float(input('Iveskite suma: '))
+        pajamos.append([dt, pavadinimas, suma])
+        continue
 
-    if pasirinkimas == "2":
-        data2 = input('Iveskite data formatu(YYYY-MM-DD): ')
-        dt = datetime.datetime.strptime(data2, '%Y-%m-%d')
-        maistas = float(input('Maistas: '))
-        bustas = float(input('Bustas: '))
-        masina = float(input('Masina: '))
-        papildomos2 = float(input('Papildomos islaidos(rubai, augintinio ar vaiku islaidos, kiti ivairus pirkiniai): '))
-        naujos_islaidos = [maistas, bustas, masina, papildomos2]
-        islaidos.append(naujos_islaidos)
-        suma2 = sum(naujos_islaidos)
-        print(suma2)
+    elif pasirinkimas == "2":
+        data = input('Iveskite data (YYYY-MM-DD): ')
+        dt = datetime.datetime.strptime(data, '%Y-%m-%d')
+        pavadinimas = input('Iveskite islaidu pavadinima: ')
+        suma = float(input('Iveskite suma: '))
+        islaidos.append([dt, pavadinimas, suma])
+        continue
 
-    if pasirinkimas == "3":
+    elif pasirinkimas == "3":
         if not pajamos:
-            print('Neivestos pajamos!!!')
+            print('Pajamos neivestos!')
         else:
             for elem in pajamos:
-                print(f'Data: {data1}\n'
-                      f'Avansas: {elem[0]}\n'
-                      f'Atlyginimas: {elem[1]}\n'
-                      f'Stipendija: {elem[2]}\n'
-                      f'Investiciju uzdarbis: {elem[3]}\n'
-                      f'Papildomos pajamos: {elem[4]}')
+                print(f'{elem[0]}, {elem[1]}: {elem[2]}')
+        continue
 
-    if pasirinkimas == "4":
+    elif pasirinkimas == "4":
         if not islaidos:
-            print('Neivestos islaidos!!!')
+            print('Islaidos neivestos!')
         else:
             for elem in islaidos:
-                print(f'Data: {data2}\n'
-                      f'Maistas: {elem[0]}\n'
-                      f'Bustas: {elem[1]}\n'
-                      f'Masina: {elem[2]}\n'
-                      f'Papildomos islaidos(rubai, augintinio ar vaiku islaidos, kiti ivairus pirkiniai): {elem[3]}')
+                print(f'{elem[0]}, {elem[1]}: {elem[2]}')
+        continue
 
+    elif pasirinkimas == "5":
+        pajamu_sumos = list(elem[2] for elem in pajamos)
 
+        print(f'Visu pajamu suma: {sumuok(pajamu_sumos)}')
+        print(f'Visu pajamu vidurkis: {vidurkis(pajamu_sumos)}')
+        print(f'Didziausios pajamos suma: {didziausias(pajamu_sumos)}')
+        print(f'Maziausios pajamos suma: {maziausias(pajamu_sumos)}')
 
+        islaidu_sumos = list(elem[2] for elem in islaidos)
 
+        print(f'Visu islaidu suma: {sumuok(islaidu_sumos)}')
+        print(f'Visu islaidu vidurkis: {vidurkis(islaidu_sumos)}')
+        print(f'Didziausios islaidos suma: {didziausias(islaidu_sumos)}')
+        print(f'Maziausios islaidos suma: {maziausias(islaidu_sumos)}')
+
+        sk1 = sumuok(pajamu_sumos)
+        sk2 = sumuok(islaidu_sumos)
+
+        print(f'Balansas (likusi pajamu suma): {balansas(sk1, sk2)}')
+        continue
+
+    else:
+        print('Tokio pasirinkimo nera!')
+        continue
+
+print('Programa baigia darba')
