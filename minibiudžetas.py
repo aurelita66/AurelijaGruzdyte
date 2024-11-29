@@ -29,4 +29,19 @@ while True:
         suma = sum(naujos_pajamos)
         print(suma)
 
+    if pasirinkimas == "2":
+        data2 = input('Iveskite data formatu(YYYY-MM-DD): ')
+        dt = datetime.datetime.strptime(data2, '%Y-%m-%d')
+        maistas = float(input('Maistas: '))
+        bustas = float(input('Bustas: '))
+        masina = float(input('Masina: '))
+        papildomos2 = float(input('Papildomos islaidos(rubai, augintinio ar vaiku islaidos, kiti ivairus pirkiniai): '))
+        naujos_islaidos = [maistas, bustas, masina, papildomos2]
+        islaidos.append(naujos_islaidos)
+        suma2 = sum(naujos_islaidos)
+        print(suma2)
+
+
+
+
 
